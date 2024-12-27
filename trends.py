@@ -1,6 +1,8 @@
 from pytrends.request import TrendReq
 import pandas as pd
 import time
+from datetime import datetime, timedelta
+import os
 
 # 初始化 pytrend
 pytrend = TrendReq(hl='en-US', tz=360)
@@ -28,11 +30,55 @@ keywords = [
 
 important_keywords = ['SHIB', 'PEPE', 'BONK', 'FLOKI', 'MOG']
 
+# 起始與結束日期
+start_date = datetime(2024, 1, 1)
+end_date = datetime(2024, 12, 31)
+
+# CSV 文件名稱
+output_file = 'google_trends_data.csv'
+
+# 遍歷每月時間範圍
+current_date = start_date
+while current_date <= end_date:
+    # 設定每月的起始和結束日期
+    month_start = current_date
+    month_end = (current_date + timedelta(days=31)).replace(day=1) - timedelta(days=1)
+
+    # 格式化為 pytrends 的日期範圍
+    timeframe = f"{month_start.strftime('%Y-%m-%d')} {month_end.strftime('%Y-%m-%d')}"
+    print(f"正在查詢時間範圍: {timeframe}")
+
+    # 構建 pytrends 查詢
+    pytrend.build_payload(kw_list=important_keywords, timeframe=timeframe, geo='')
+    data = pytrend.interest_over_time()
+
+    # 確保數據不是空的
+    if not data.empty:
+        # 確保表頭的處理
+        if os.path.exists(output_file) and os.path.getsize(output_file) > 0:
+            write_header = not bool(pd.read_csv(output_file).shape[0])
+        else:
+            write_header = True
+
+        # 追加寫入 CSV 文件
+        data.to_csv(output_file, mode='a', header=write_header, index=True)
+        print(f"時間範圍 {timeframe} 的結果已追加到 '{output_file}'")
+    else:
+        print(f"時間範圍 {timeframe} 沒有找到符合條件的資料")
+
+    # 休眠，避免被封鎖
+    time.sleep(10)
+
+    # 更新日期到下一個月
+    current_date = (current_date + timedelta(days=31)).replace(day=1)
+
+'''
 # 將關鍵字分組，每組最多 5 個
 #groups = [keywords[i:i + 5] for i in range(0, len(keywords), 5)]
 
 # 時間範圍
-timeframe = '2024-01-01 2024-12-21'
+#timeframe = '2024-01-01 2024-12-21'
+timeframe = '2024-01-01 2024-02-01'
 
 # 儲存所有分組查詢的結果
 all_data = []
@@ -54,6 +100,7 @@ if not data.empty:
     print("結果已保存為 'google_trends_data.csv'")
 else:
     print("沒有找到符合條件的資料")
+'''    
 
 '''
 # 查詢每組關鍵字
