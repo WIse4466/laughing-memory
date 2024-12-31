@@ -35,44 +35,49 @@ Correlation matrix for shiba-inu:
 |trading_volume | 0.541018     |   1.000000 | 0.634280  |
 |trend     |      0.359334    |    0.634280 | 1.000000  |
 
-Correlation matrix for pepe:
-                   price  trading_volume     trend
-price           1.000000        0.672708 -0.143642
-trading_volume  0.672708        1.000000  0.151011
-trend          -0.143642        0.151011  1.000000
+Correlation matrix for pepe:  
+|                   |price | trading_volume  |   trend|
+|:--|--:|:--:|:--:|
+|price       |    1.000000    |    0.672708 |-0.143642|
+|trading_volume | 0.672708    |    1.000000 | 0.151011|
+|trend      |    -0.143642    |    0.151011 | 1.000000|
 
-Correlation matrix for bonk:
-                   price  trading_volume     trend
-price           1.000000        0.737057  0.032744
-trading_volume  0.737057        1.000000  0.262896
-trend           0.032744        0.262896  1.000000
+Correlation matrix for bonk:  
+|  | price | trading_volume  |   trend|
+|:--|--:|:--:|:--:|
+|price    |       1.000000  |      0.737057 | 0.032744|
+|trading_volume | 0.737057    |    1.000000 | 0.262896|
+|trend     |      0.032744    |    0.262896 | 1.000000|
 
 Correlation matrix for floki:
-                   price  trading_volume     trend
-price           1.000000        0.642937  0.300401
-trading_volume  0.642937        1.000000  0.472558
-trend           0.300401        0.472558  1.000000
+| |price | trading_volume  |   trend|
+|:--|--:|:--:|:--:|
+|price     |      1.000000     |   0.642937 | 0.300401|
+|trading_volume | 0.642937    |    1.000000 | 0.472558|
+|trend     |      0.300401    |    0.472558 | 1.000000|
 
-Correlation matrix for mog-coin:
-...
-price           1.000000        0.702583 -0.450808
-trading_volume  0.702583        1.000000 -0.229812
-trend          -0.450808       -0.229812  1.000000
+Correlation matrix for mog-coin:  
+| | price | trading_volume | trend|
+|:--|--:|:--:|:--:|
+|price      |     1.000000     |   0.702583| -0.450808|
+|trading_volume | 0.702583    |    1.000000| -0.229812|
+|trend     |     -0.450808   |    -0.229812| 1.000000|
 
 ## 機器學習
+基於以上分析，確認這些變數間具有正相關，因此作為訓練的特徵，而價格則作為標籤進行訓練  
 ### LinearRegression
-bonk - MSE: 0.000000, RMSE: 0.000007, MAE: 0.000005, MAPE: 23.39%, R²: 0.5888
-floki - MSE: 0.000000, RMSE: 0.000055, MAE: 0.000049, MAPE: 58.03%, R²: 0.4757
-mog-coin - MSE: 0.000000, RMSE: 0.000000, MAE: 0.000000, MAPE: 44.39%, R²: 0.8256
-pepe - MSE: 0.000000, RMSE: 0.000003, MAE: 0.000003, MAPE: 56.15%, R²: 0.7233
-shiba-inu - MSE: 0.000000, RMSE: 0.000006, MAE: 0.000005, MAPE: 28.98%, R²: 0.2403
+>一開始使用線性回歸進行預測作為baseline
+>MAPE(Mean Absolute Percentage Error)，以百分比的形式比較預測與誤差之間的差距
+>因為price的數字本身很小，因此就算誤差很大，MSE, MAE等指標的數值仍會很小，無法呈現實際的模型表現
+>如同前面的分析，shiba-inu, bonk等數據較具有相關性的表現較好
 
-### RandomForestRegressor
-bonk - MSE: 0.000000, RMSE: 0.000004, MAE: 0.000003, MAPE: 9.10%, R²: 0.8695
-floki - MSE: 0.000000, RMSE: 0.000023, MAE: 0.000016, MAPE: 9.09%, R²: 0.9080
-mog-coin - MSE: 0.000000, RMSE: 0.000000, MAE: 0.000000, MAPE: 17.65%, R²: 0.9180
-pepe - MSE: 0.000000, RMSE: 0.000002, MAE: 0.000001, MAPE: 9.72%, R²: 0.9367
-shiba-inu - MSE: 0.000000, RMSE: 0.000003, MAE: 0.000002, MAPE: 8.68%, R²: 0.8602
+| | MSE| RMSE| MAE| MAPE| R²|
+|:--|--:|:--:|:--:|:--|--:|
+|bonk | MSE: 0.000000| RMSE: 0.000007| MAE: 0.000005| MAPE: 23.39%| R²: 0.5888|
+|floki | MSE: 0.000000| RMSE: 0.000055| MAE: 0.000049| MAPE: 58.03%| R²: 0.4757|
+|mog-coin | MSE: 0.000000| RMSE: 0.000000| MAE: 0.000000| MAPE: 44.39%| R²: 0.8256|
+|pepe | MSE: 0.000000| RMSE: 0.000003| MAE: 0.000003| MAPE: 56.15%| R²: 0.7233|
+|shiba-inu | MSE: 0.000000| RMSE: 0.000006| MAE: 0.000005| MAPE: 28.98%| R²: 0.2403|
 
 ### LSTM
 bonk - MSE: 0.000012, RMSE: 0.003418, MAE: 0.001871, MAPE: 7721.17%, R²: -113363.2700
@@ -87,3 +92,21 @@ floki - MSE: 0.000000, RMSE: 0.000085, MAE: 0.000067, MAPE: 185.80%, R²: -0.224
 mog-coin - MSE: 0.000000, RMSE: 0.000001, MAE: 0.000001, MAPE: 429.84%, R²: -0.0135
 pepe - MSE: 0.000650, RMSE: 0.025491, MAE: 0.025491, MAPE: 924284.98%, R²: -15414892.7402
 shiba-inu - MSE: 0.000000, RMSE: 0.000008, MAE: 0.000006, MAPE: 99.59%, R²: -0.3312
+
+>LSTM與ARIMA同樣作為時間序列資料進行預測時常用的模型，應用在此場景中的表現卻奇差無比
+>更改window size，神經元數或神經網路層數，都無法有效的優化模型
+>推測是因為資料量太小，僅有一年份的資料無法進行有效的預測
+>或是因為資料的波動幅度較大，ARIMA通常適用於較為平穩的時間序列資料
+
+
+### RandomForestRegressor
+bonk - MSE: 0.000000, RMSE: 0.000004, MAE: 0.000003, MAPE: 9.10%, R²: 0.8695
+floki - MSE: 0.000000, RMSE: 0.000023, MAE: 0.000016, MAPE: 9.09%, R²: 0.9080
+mog-coin - MSE: 0.000000, RMSE: 0.000000, MAE: 0.000000, MAPE: 17.65%, R²: 0.9180
+pepe - MSE: 0.000000, RMSE: 0.000002, MAE: 0.000001, MAPE: 9.72%, R²: 0.9367
+shiba-inu - MSE: 0.000000, RMSE: 0.000003, MAE: 0.000002, MAPE: 8.68%, R²: 0.8602
+
+>最後使用Random Forest來進行預測
+>其特性是集成多棵決策數的學習方法
+>可以處理非線性的數據，所需的資料量較少
+>最後得到了明顯優於其他模型的MAPE和 $$R^2$$
