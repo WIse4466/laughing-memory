@@ -11,6 +11,7 @@
 - BONK
 - FLOKI
 - MOG
+
 將數據同取log進行壓縮，避免極端值得影響，也使數據分布較為平滑  
 觀察5種迷因幣的表現，可以發現各種幣之間搜尋的熱度有相似趨勢，而PEPE幣的熱度相較於其他幣明顯更高  
 ![Log-Transformed Trend of Meme Coins Over Time](https://github.com/user-attachments/assets/1e3de221-d4a6-47fe-bc03-d8092b301c4d)
@@ -65,6 +66,8 @@ Correlation matrix for mog-coin:
 
 ## 機器學習
 基於以上分析，確認這些變數間具有正相關，因此作為訓練的特徵，而價格則作為標籤進行訓練  
+數直接經過正規化，映射至[0, 1]的區間  
+
 ### LinearRegression
 >一開始使用線性回歸進行預測作為baseline
 >MAPE(Mean Absolute Percentage Error)，以百分比的形式比較預測與誤差之間的差距
