@@ -1,11 +1,11 @@
 # Data_Model_Final_Project
-分析迷因幣的價量分析，還有持幣者結構分析
+分析迷因幣的價量分析，還有持幣者結構分析  
 資料來源 : https://drive.google.com/drive/folders/10R8rxzjpwdN8E3Gegz7JkoZgBfS3friS
 
 ## 關鍵字熱度
-我們認為關鍵字熱度可以一定程度的代表市場的情緒，與新聞為市場帶來的資訊影響
-使用pytrend API抓取Ethereum上前5大的meme coin在2024年關鍵字熱度的變化  
-分別是
+我們認為關鍵字熱度可以一定程度的代表市場的情緒，與新聞為市場帶來的資訊影響  
+使用pytrend API抓取Ethereum上前5大的meme coin在2024年關鍵字熱度的變化    
+分別是  
 - PEPE
 - SHIB
 - BONK
