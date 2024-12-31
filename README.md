@@ -29,10 +29,10 @@
 
 ## 相關係數矩陣
 Correlation matrix for shiba-inu:  
-                   price  trading_volume     trend  
-price           1.000000        0.541018  0.359334  
-trading_volume  0.541018        1.000000  0.634280  
-trend           0.359334        0.634280  1.000000  
+|                   |price | trading_volume  |   trend | 
+|price     |      1.000000   |     0.541018 | 0.359334  |
+|trading_volume | 0.541018     |   1.000000 | 0.634280  |
+|trend     |      0.359334    |    0.634280 | 1.000000  |
 
 Correlation matrix for pepe:
                    price  trading_volume     trend
