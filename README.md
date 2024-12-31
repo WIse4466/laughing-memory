@@ -3,11 +3,24 @@
 資料來源 : https://drive.google.com/drive/folders/10R8rxzjpwdN8E3Gegz7JkoZgBfS3friS
 
 ## 關鍵字熱度
-![Normalized_Trend_of_Meme_Coins_Over_Time](https://github.com/user-attachments/assets/07c3c7b0-5193-4473-b4fb-e4b90cc6f8a0)
+我們認為關鍵字熱度可以一定程度的代表市場的情緒，與新聞為市場帶來的資訊影響
+使用pytrend API抓取Ethereum上前5大的meme coin在2024年關鍵字熱度的變化  
+分別是
+- PEPE
+- SHIB
+- BONK
+- FLOKI
+- MOG
+將數據同取log進行壓縮，避免極端值得影響，也使數據分布較為平滑  
+觀察5種迷因幣的表現，可以發現各種幣之間搜尋的熱度有相似趨勢，而PEPE幣的熱度相較於其他幣明顯更高  
 ![Log-Transformed Trend of Meme Coins Over Time](https://github.com/user-attachments/assets/1e3de221-d4a6-47fe-bc03-d8092b301c4d)
-這張圖表現了Ethereum上前5大的meme coin在2024年關鍵字熱度的變化
+這張圖表現了Ethereum上前5大的meme coin在2024年關鍵字熱度的變化  
 
 ## 價格、熱度、成交量
+接著我們將2024年這5種迷因幣的資料與2024年關鍵字熱度資料進行整合  
+利用畫圖與變數之間彼此的關係係數，分析三個變量之間的關係  
+從圖中可以發現，Shiba-inu, Floki 和 Bonk三種迷因幣其變量間的趨勢很相近，猜測相關度較高  
+計算相關係數後可以發現，這三種幣其變量確實呈現正相關，應可作為機器學習的訓練資料，以預測未來價格  
 ![bonk_normalized_metrics_over_time](https://github.com/user-attachments/assets/d569e0be-55b8-4306-8901-107e11f84b96)
 ![floki_normalized_metrics_over_time](https://github.com/user-attachments/assets/23ab3c25-fbe6-4681-bc9f-0526602ae12a)
 ![mog-coin_normalized_metrics_over_time](https://github.com/user-attachments/assets/ae0e0a85-55ae-48a1-9669-359b652ba2ba)
@@ -15,11 +28,11 @@
 ![shiba-inu_normalized_metrics_over_time](https://github.com/user-attachments/assets/ae6a310d-76c7-4ca0-b071-4c5518033d96)
 
 ## 相關係數矩陣
-Correlation matrix for shiba-inu:
-                   price  trading_volume     trend
-price           1.000000        0.541018  0.359334
-trading_volume  0.541018        1.000000  0.634280
-trend           0.359334        0.634280  1.000000
+Correlation matrix for shiba-inu:  
+                   price  trading_volume     trend  
+price           1.000000        0.541018  0.359334  
+trading_volume  0.541018        1.000000  0.634280  
+trend           0.359334        0.634280  1.000000  
 
 Correlation matrix for pepe:
                    price  trading_volume     trend
